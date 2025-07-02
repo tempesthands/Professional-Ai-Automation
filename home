@@ -1,0 +1,693 @@
+.floating-card {<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orlando Pavon - AI Market Prediction & Strategy Automation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section with Gradient Animation */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero-content {
+            color: white;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero-description {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: #ff6b6b;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 1rem 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .portrait-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .portrait-placeholder {
+            margin-bottom: 1rem;
+        }
+
+        .portrait-frame {
+            width: 280px;
+            height: 350px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(20px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portrait-text {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .portrait-frame::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+            border-radius: 22px;
+            z-index: -1;
+            animation: borderRotate 3s linear infinite;
+        }
+
+        @keyframes borderRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            animation: float 6s ease-in-out infinite;
+            text-align: center;
+            color: white;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .floating-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .floating-card .metric {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffd700;
+            display: block;
+            margin: 0.5rem 0;
+        }
+
+        /* Trust Section */
+        .trust-section {
+            padding: 5rem 0;
+            background: #f8fafc;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #6b7280;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        .story-content h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #1a1a1a;
+        }
+
+        .story-content p {
+            font-size: 1.1rem;
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .full-body-placeholder {
+            display: flex;
+            justify-content: center;
+        }
+
+        .full-body-frame {
+            width: 300px;
+            height: 400px;
+            background: rgba(102, 126, 234, 0.1);
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .full-body-text {
+            color: rgba(102, 126, 234, 0.8);
+            font-size: 1.1rem;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .credentials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .credential-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .credential-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .credential-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .credential-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+        }
+
+        .service-card-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .service-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            opacity: 0.95;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features {
+            list-style: none;
+        }
+
+        .service-features li {
+            padding: 0.5rem 0;
+            opacity: 0.9;
+        }
+
+        .service-features li::before {
+            content: '✓';
+            color: #4ade80;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-content h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .cta-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .calendar-widget {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem auto;
+            max-width: 500px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .calendar-widget h3 {
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+        }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .time-slot {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.8rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .time-slot:hover {
+            background: #ff6b6b;
+            border-color: #ff6b6b;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .story-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .credentials {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-content h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-subtitle">From Nashville Kitchens to AI Business Automation</div>
+                <h1 class="hero-title">I Build AI Systems That Run Your Business While You Sleep</h1>
+                <p class="hero-description">
+                    Orlando Pavon here—a guy raised on faith, family, and hard work in a Christ-centered home. I started as a line cook, chasing flavors and dreams across the globe until I landed in vibrant Nashville, TN. My journey took me to Dr. Ernest Chan & Dr. Yves Hilpsh, where I dove deep into Market Prediction and Strategy Automation, fueling my passion for AI. Now I help businesses automate everything from customer service to sales funnels using cutting-edge AI technology.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#schedule" class="btn-primary">
+                        🤖 Schedule Your Automation Audit
+                    </a>
+                    <a href="#services" class="btn-secondary">
+                        See How AI Can Help
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="portrait-container">
+                    <div class="portrait-placeholder">
+                        <div class="portrait-frame">
+                            <div class="portrait-text">Your Portrait Photo Here</div>
+                        </div>
+                    </div>
+                    <div class="floating-card">
+                        <h3>Business Automation Success</h3>
+                        <span class="metric">94%</span>
+                        <p>Client efficiency increase with AI automation systems</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust/Story Section -->
+    <section class="trust-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Why a Former Line Cook Builds Better AI Systems Than Most Tech Bros</h2>
+            <p class="section-subtitle fade-in">The same precision, timing, and workflow optimization that made me great in the kitchen now drives my AI automation systems.</p>
+            
+            <div class="story-grid fade-in">
+                <div class="story-content">
+                    <h3>From High-Pressure Kitchens to High-Performance AI</h3>
+                    <p>In professional kitchens, every system must work flawlessly under pressure. One broken process destroys the entire operation. That's exactly how I approach AI automation—building bulletproof systems that handle your business operations seamlessly.</p>
+                    <p>My journey through market prediction and strategy automation with Dr. Ernest Chan and Dr. Yves Hilpsh taught me that AI isn't just about fancy algorithms—it's about creating reliable systems that deliver consistent results. Now I apply that same methodical approach to automating businesses across every industry.</p>
+                </div>
+                <div class="story-visual">
+                    <div class="full-body-placeholder">
+                        <div class="full-body-frame">
+                            <div class="full-body-text">Your Full Body Photo Here</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="credentials fade-in">
+                <div class="credential-card">
+                    <div class="credential-icon">🤖</div>
+                    <h4>AI System Architecture</h4>
+                    <p>Custom AI solutions that automate complex business processes with enterprise-grade reliability</p>
+                </div>
+                <div class="credential-card">
+                    <div class="credential-icon">⚡</div>
+                    <h4>Workflow Automation</h4>
+                    <p>End-to-end process automation that eliminates manual tasks and scales your operations</p>
+                </div>
+                <div class="credential-card">
+                    <div class="credential-icon">📊</div>
+                    <h4>Market Prediction Expertise</h4>
+                    <p>Advanced algorithmic experience applied to business forecasting and strategic automation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section" id="services">
+        <div class="container">
+            <h2 class="section-title fade-in">How I Automate Your Business So You Can Focus on Growth</h2>
+            <p class="section-subtitle fade-in">Three core AI automation services that transform how your business operates</p>
+            
+            <div class="services-grid fade-in">
+                <div class="service-card">
+                    <div class="service-card-content">
+                        <h3>AI Customer Service Automation</h3>
+                        <p>Deploy intelligent chatbots and support systems that handle 90% of customer inquiries, book appointments, and nurture leads 24/7—all while sounding completely human.</p>
+                        <ul class="service-features">
+                            <li>Custom AI chatbots for your industry</li>
+                            <li>Automated appointment scheduling</li>
+                            <li>Lead qualification and nurturing</li>
+                            <li>Integration with your existing CRM</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-card-content">
+                        <h3>Sales & Marketing Automation</h3>
+                        <p>AI-powered sales funnels that identify hot prospects, send personalized follow-ups, and close deals while you focus on strategic growth.</p>
+                        <ul class="service-features">
+                            <li>Intelligent lead scoring and routing</li>
+                            <li>Personalized email sequences</li>
+                            <li>Automated social media management</li>
+                            <li>Predictive analytics for sales forecasting</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-card-content">
+                        <h3>Complete Business Process Automation</h3>
+                        <p>From inventory management to financial reporting—I'll identify and automate every repetitive task in your business using AI and custom integrations.</p>
+                        <ul class="service-features">
+                            <li>Workflow analysis and optimization</li>
+                            <li>Custom AI tool development</li>
+                            <li>System integrations and APIs</li>
+                            <li>Ongoing monitoring and optimization</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="schedule">
+        <div class="container">
+            <div class="cta-content fade-in">
+                <h2>Ready to Automate Your Business and Scale Without the Stress?</h2>
+                <p>Book a 30-minute automation audit where I'll analyze your current processes and show you exactly how AI can eliminate your biggest operational headaches.</p>
+                
+                <div class="calendar-widget fade-in">
+                    <h3>Choose Your Preferred Time</h3>
+                    <div class="time-slots">
+                        <div class="time-slot">9:00 AM</div>
+                        <div class="time-slot">11:00 AM</div>
+                        <div class="time-slot">1:00 PM</div>
+                        <div class="time-slot">3:00 PM</div>
+                        <div class="time-slot">5:00 PM</div>
+                        <div class="time-slot">7:00 PM</div>
+                    </div>
+                    <a href="#" class="btn-primary" style="width: 100%; justify-content: center;">
+                        🤖 Book Your Automation Audit
+                    </a>
+                </div>
+                
+                <p style="margin-top: 2rem; opacity: 0.8; font-size: 1rem;">
+                    No sales pitch. No pressure. Just a genuine conversation about your business goals and how AI automation can help you achieve them faster.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Time slot selection
+        document.querySelectorAll('.time-slot').forEach(slot => {
+            slot.addEventListener('click', function() {
+                document.querySelectorAll('.time-slot').forEach(s => s.style.background = 'rgba(255, 255, 255, 0.1)');
+                this.style.background = '#ff6b6b';
+            });
+        });
+    </script>
+</body>
+</html>
